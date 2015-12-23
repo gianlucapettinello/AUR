@@ -7,12 +7,13 @@ pkgdesc="Reverse engineered Linux driver for the Broadcom 1570 PCIe webcam"
 url="https://github.com/patjak/bcwc_pcie"
 depends=('kmod')
 optdepends=()
-makedepends=('linux>=4.3' 'linux<4.4' 'linux-headers' 'git')
+makedepends=('linux' 'linux-headers' 'git')
 arch=('i686' 'x86_64')
 license=('custom')
 install="${pkgname}.install"
 
-_extramodules="extramodules-4.3-ARCH"
+_kernmajor="$(pacman -Q linux | sed -r 's/linux ([0-9]*.[0-9]*).*/\1/')"
+_extramodules="extramodules-"$_kernmajor"-ARCH"
 
 # NOTE: AppleCameraInterface can be found in a OS X installation under
 #       /System/Library/Extensions/AppleCameraInterface.kext/Contents/MacOS/
