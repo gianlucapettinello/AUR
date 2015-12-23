@@ -1,5 +1,6 @@
 _depmod() {
-  EXTRAMODULES=extramodules-4.3-ARCH
+  _kernmajor=$(pacman -Q linux | sed -r 's/linux ([0-9]*.[0-9]*).*/\1/')
+  EXTRAMODULES=extramodules-$_kernmajor-ARCH
   depmod $(cat /usr/lib/modules/$EXTRAMODULES/version)
 }
 
